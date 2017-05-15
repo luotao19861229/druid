@@ -77,6 +77,19 @@ public final class QueryPlus<T>
   }
 
   /**
+   * Returns the same QueryPlus object, if it doesn't have {@link QueryMetrics} ({@link #getQueryMetrics()} returns
+   * null), or returns a new QueryPlus object with {@link Query} from this QueryPlus and null as QueryMetrics.
+   */
+  public QueryPlus<T> withoutQueryMetrics()
+  {
+    if (queryMetrics == null) {
+      return this;
+    } else {
+      return new QueryPlus<>(query, null);
+    }
+  }
+
+  /**
    * Equivalent of withQuery(getQuery().withQuerySegmentSpec(spec)).
    */
   public QueryPlus<T> withQuerySegmentSpec(QuerySegmentSpec spec)
